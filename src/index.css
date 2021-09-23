@@ -4,7 +4,7 @@ body {
   font-family: 'Montserrat';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #E5D9D2;
+  background-color: hsla(21, 26%, 86%, 1);
 }
 
 code {

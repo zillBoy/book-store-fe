@@ -14,6 +14,7 @@ export const Image = styled.img`
     cursor: pointer;
     width: 28px;
     height: 28px;
+    margin-left: 10px;
 `;
 
 export const LogoText = styled.p`
