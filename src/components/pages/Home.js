@@ -1,6 +1,6 @@
 import React from 'react'
 import Layout from '../Layout'
-import { Container, InnerContainer, ContainerImage, Image, ContainerContent, MainHeader, MainText, ContainerButton, Button, ContainerSquareImage, SquareImage, ContainerSocialImage, SocialImage } from '../styles/Home'
+import { Container, InnerContainer, ContainerImage, Image, ContainerContent, MainHeader, MainText, ContainerButton, Button, ContainerSquareImage, SquareImage, ContainerSocialImage, SocialImage, SocialLink } from '../styles/Home'
 import productLandingPageImage from '../../assets/images/productLandingPage.jpg'
 import squareImage from '../../assets/images/square.png'
 import githubImage from '../../assets/images/github.png'
@@ -28,9 +28,15 @@ const Home = () => {
                         <Image src={productLandingPageImage} alt='product landing page' />
                     </ContainerImage>
                     <ContainerSocialImage>
-                        <SocialImage src={githubImage} alt='github' />
-                        <SocialImage src={behanceImage} alt='behance' />
-                        <SocialImage src={linkedinImage} alt='linkedin' />
+                        <SocialLink target='_blank' href='https://github.com/zillBoy'>
+                            <SocialImage src={githubImage} alt='github' />
+                        </SocialLink>
+                        <SocialLink target='_blank' href='https://www.behance.net/muhammausmanz'>
+                            <SocialImage src={behanceImage} alt='behance' />
+                        </SocialLink>
+                        <SocialLink target='_blank' href='https://www.linkedin.com/in/muhammad-usman-28a737177'>
+                            <SocialImage src={linkedinImage} alt='linkedin' />
+                        </SocialLink>
                     </ContainerSocialImage>
                 </InnerContainer>
             </Container>

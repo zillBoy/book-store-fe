@@ -70,6 +70,10 @@ export const ContainerSocialImage = styled.div`
     right: 2%;
 `;
 
+export const SocialLink = styled.a`
+    cursor: pointer;
+`;
+
 export const SocialImage = styled.img`
     width: 24px;
     height: 24px;
