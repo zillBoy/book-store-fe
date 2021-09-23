@@ -1,12 +1,21 @@
 import React from 'react'
-import { Container } from './styles/Navbar'
+import { useHistory } from 'react-router-dom'
+
+import { Container, Image } from './styles/Navbar'
+import blackLogo from '../assets/images/blackLogo.png'
+import whiteLogo from '../assets/images/whiteLogo.png'
 
 const Navbar = ({ logoColor }) => {
     
+    const history = useHistory()
+
+    const toHomePage = () => {
+        history.push('/')
+    }
+
     return (
         <Container>
-            <img src='../assets/images/blackLogo.png' alt='logo' />
-            
+            <Image onClick={toHomePage} src={logoColor === 'black' ? blackLogo : whiteLogo} alt='logo' />
         </Container>
     )
 }
