@@ -9,7 +9,7 @@ import linkedinImage from '../../assets/images/linkedin.png'
 
 const Home = () => {
     return (
-        <Layout>
+        <Layout authColor='white'>
             <Container>
                 <InnerContainer>
                     <ContainerContent>
