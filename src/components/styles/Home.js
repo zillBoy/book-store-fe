@@ -4,14 +4,28 @@ const fontFamily = 'Montserrat'
 
 export const Container = styled.div`
     display: flex;
+
+    @media only screen and (max-width: 768px) {
+        display: block;
+    }
 `;
 
 export const InnerContainer = styled.div`
     width: 50%;
+
+    @media only screen and (max-width: 768px) {
+        width: 100%;
+    }
 `;
 
 export const ContainerImage = styled.div`
     background-color: black;
+
+    @media only screen and (max-width: 768px) {
+        position: absolute;
+        top: 0%;
+        width: 100%;
+    }
 `;
 
 export const Image = styled.img`
@@ -19,26 +33,55 @@ export const Image = styled.img`
     height: 99.5vh;
     object-fit: cover;
     opacity: 0.7;
+
+    @media only screen and (max-width: 768px) {
+        width: 100%;
+        position: absolute;
+        top: 0%;
+        z-index: -1;
+        opacity: 1;
+        clip-path: polygon(0 0, 100% 0, 100% 80%, 0% 100%);
+    }
 `;
 
 export const ContainerContent = styled.div`
     margin-top: 250px;
     margin-left: 100px;
     width: 80%;
+
+    @media only screen and (max-width: 768px) {
+        margin-left: 40px;
+    }
 `;
 
 export const MainHeader = styled.h1`
     font-size: 50px;
     text-transform: uppercase;
+
+    @media only screen and (max-width: 768px) {
+        color: #fff;
+        width: 350px;
+    }
+
 `;
 
 export const MainText = styled.p`
     position: relative;
     top: -30px;
+
+    @media only screen and (max-width: 768px) {
+        color: #fff;
+        width: 350px;
+    }
+
 `;
 
 export const ContainerButton = styled.div`
     margin-top: 40px;
+
+    @media only screen and (max-width: 768px) {
+        
+    }
 `;
 
 export const Button = styled.button`
@@ -51,12 +94,15 @@ export const Button = styled.button`
     font-size: 14px;
     font-family: ${fontFamily};
     cursor: pointer;
+
+    @media only screen and (max-width: 768px) {
+        
+    }
 `;
 
 export const ContainerSquareImage = styled.div`
     position: absolute;
     bottom: 0%;
-    
 `;
 
 export const SquareImage = styled.img`
@@ -68,6 +114,10 @@ export const ContainerSocialImage = styled.div`
     position: absolute;
     bottom: 5%;
     right: 2%;
+
+    @media only screen and (max-width: 768px) {
+        bottom: 2%;
+    }
 `;
 
 export const SocialLink = styled.a`

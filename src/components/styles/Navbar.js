@@ -10,6 +10,12 @@ export const Container = styled.div`
     align-items: center;
     width: 98.1%;
     z-index: 1;
+
+    @media only screen and (max-width: 768px) {
+        position: absolute;
+        top: 0%;
+    }
+
 `;
 
 export const ContainerLogo = styled.div`
@@ -26,6 +32,11 @@ export const LogoImage = styled.img`
 
 export const LogoText = styled.p`
     margin-left: 5px;
+
+    @media only screen and (max-width: 768px) {
+        color: #fff;
+    }
+
 `;
 
 export const ContainerAuth = styled.div`

@@ -1,15 +1,26 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Layout from '../Layout'
-import { Container, InnerContainer, ContainerImage, Image, ContainerContent, MainHeader, MainText, ContainerButton, Button, ContainerSquareImage, SquareImage, ContainerSocialImage, SocialImage, SocialLink } from '../styles/Home'
+import { Container, InnerContainer, ContainerImage, Image, ContainerContent, MainHeader, MainText, ContainerButton, Button, ContainerSquareImage, SquareImage, ContainerSocialImage, SocialImage, SocialLink, MobileContainerImage } from '../styles/Home'
 import productLandingPageImage from '../../assets/images/productLandingPage.jpg'
 import squareImage from '../../assets/images/square.png'
+
 import githubImage from '../../assets/images/github.png'
 import behanceImage from '../../assets/images/behance.png'
 import linkedinImage from '../../assets/images/linkedin.png'
 
+import blackGithubImage from '../../assets/images/blackGithub.png'
+import blackBehanceImage from '../../assets/images/blackBehance.png'
+import blackLinkedinImage from '../../assets/images/blackLinkedin.png'
+
+import useWindowDimensions from '../../hooks/useWindowDimensions'
+
 const Home = () => {
+
+    const { width } = useWindowDimensions();
+
+
     return (
-        <Layout authColor='white'>
+        <Layout logoColor={width <= 768 ? 'white' : 'black'} authColor='white'>
             <Container>
                 <InnerContainer>
                     <ContainerContent>
@@ -29,13 +40,13 @@ const Home = () => {
                     </ContainerImage>
                     <ContainerSocialImage>
                         <SocialLink target='_blank' href='https://github.com/zillBoy'>
-                            <SocialImage src={githubImage} alt='github' />
+                            <SocialImage src={width <= 768 ? blackGithubImage : githubImage} alt='github' />
                         </SocialLink>
                         <SocialLink target='_blank' href='https://www.behance.net/muhammausmanz'>
-                            <SocialImage src={behanceImage} alt='behance' />
+                            <SocialImage src={width <= 768 ? blackBehanceImage : behanceImage} alt='behance' />
                         </SocialLink>
                         <SocialLink target='_blank' href='https://www.linkedin.com/in/muhammad-usman-28a737177'>
-                            <SocialImage src={linkedinImage} alt='linkedin' />
+                            <SocialImage src={width <= 768 ?  blackLinkedinImage : linkedinImage} alt='linkedin' />
                         </SocialLink>
                     </ContainerSocialImage>
                 </InnerContainer>
