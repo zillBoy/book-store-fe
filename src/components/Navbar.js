@@ -6,15 +6,16 @@ import blackLogo from '../assets/images/blackLogo.png'
 import whiteLogo from '../assets/images/whiteLogo.png'
 import DropdownMenu from './DropdownMenu'
 
-const Navbar = ({ logoColor, authColor }) => {
+const Navbar = ({ logoColor, logoTextColor, authColor, hideAuth }) => {
     
+
     const history = useHistory()
     const adminData = JSON.parse(localStorage.getItem('adminData'))
     
     const [hover, setHover] = useState(false)
 
     const toLoginPageHandler = () => {
-        console.log('called')
+        history.push('/login')
     }
 
     const toHomePageHandler = () => {
@@ -31,14 +32,16 @@ const Navbar = ({ logoColor, authColor }) => {
 
     return (
         <Container>
-            <ContainerLogo>
-                <LogoImage onClick={toHomePageHandler} src={logoColor === 'black' ? blackLogo : whiteLogo} alt='logo' />
-                <LogoText>Books</LogoText>
+            <ContainerLogo onClick={toHomePageHandler}>
+                <LogoImage src={logoColor === 'black' ? blackLogo : whiteLogo} alt='logo' />
+                <LogoText logoTextColor={logoTextColor}>Books</LogoText>
             </ContainerLogo>
-            <ContainerAuth onClick={onHovered} onMouseOver={onHovered} onMouseLeave={onHoverLeft}>
-                <AuthText onClick={adminData === null && toLoginPageHandler} color={authColor}>{adminData !== null ? adminData.name : 'Login'}</AuthText>
-                {adminData !== null && (hover && <DropdownMenu onMouseOver={onHovered} />)}
-            </ContainerAuth>
+            {!hideAuth && <>
+                <ContainerAuth onClick={onHovered} onMouseOver={onHovered} onMouseLeave={onHoverLeft}>
+                    <AuthText onClick={adminData === null && toLoginPageHandler} color={authColor}>{adminData !== null ? adminData.name : 'Login'}</AuthText>
+                    {adminData !== null && (hover && <DropdownMenu onMouseOver={onHovered} />)}
+                </ContainerAuth>
+            </>}
         </Container>
     )
 }

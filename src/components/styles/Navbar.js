@@ -21,10 +21,10 @@ export const Container = styled.div`
 export const ContainerLogo = styled.div`
     display: flex;
     align-items: center;
+    cursor: pointer;
 `;
 
 export const LogoImage = styled.img`
-    cursor: pointer;
     width: 28px;
     height: 28px;
     margin-left: 10px;
@@ -32,10 +32,8 @@ export const LogoImage = styled.img`
 
 export const LogoText = styled.p`
     margin-left: 5px;
-
-    @media only screen and (max-width: 768px) {
-        color: #fff;
-    }
+    user-select: none;
+    color: ${props => props.logoTextColor};
 
 `;
 

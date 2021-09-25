@@ -1,4 +1,5 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom' 
 import Layout from '../Layout'
 import { Container, InnerContainer, ContainerImage, Image, ContainerContent, MainHeader, MainText, ContainerButton, Button, ContainerSquareImage, SquareImage, ContainerSocialImage, SocialImage, SocialLink, MobileResponsiveContainer } from '../styles/Home'
 import productLandingPageImage from '../../assets/images/productLandingPage.jpg'
@@ -17,9 +18,14 @@ import useWindowDimensions from '../../hooks/useWindowDimensions'
 const Home = () => {
 
     const { width } = useWindowDimensions();
+    const history = useHistory()
+
+    const toFeaturedBooksPage = () => {
+        history.push('/featuredbooks')
+    }
 
     return (
-        <Layout logoColor={width <= 768 ? 'white' : 'black'} authColor='white'>
+        <Layout logoTextColor={width <= 768 ? 'white' : 'black'} logoColor={width <= 768 ? 'white' : 'black'} authColor='white'>
             <Container>
                 <MobileResponsiveContainer />
                 <InnerContainer>
@@ -27,7 +33,7 @@ const Home = () => {
                         <MainHeader>Book Store</MainHeader>
                         <MainText>Fairy tales are more than true: not because they tell us that dragons exist, but because they tell us that dragons can be beaten.</MainText>
                         <ContainerButton>
-                            <Button>Featured Books</Button>
+                            <Button onClick={toFeaturedBooksPage}>Featured Books</Button>
                         </ContainerButton>
                     </ContainerContent>
                     <ContainerSquareImage>

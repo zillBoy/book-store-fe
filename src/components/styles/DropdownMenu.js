@@ -18,6 +18,7 @@ export const ListItem = styled.li`
     color: #000;
     padding: 10px 20px;
     border-top: ${props => props.borderTop ? props.borderTop : '0px'};
+    cursor: pointer;
 
     &:hover {
         background-color: rgba(210, 112, 112, 0.8);
