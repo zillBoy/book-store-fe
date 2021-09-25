@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Layout from '../Layout'
-import { Container, InnerContainer, ContainerImage, Image, ContainerContent, MainHeader, MainText, ContainerButton, Button, ContainerSquareImage, SquareImage, ContainerSocialImage, SocialImage, SocialLink, MobileContainerImage } from '../styles/Home'
+import { Container, InnerContainer, ContainerImage, Image, ContainerContent, MainHeader, MainText, ContainerButton, Button, ContainerSquareImage, SquareImage, ContainerSocialImage, SocialImage, SocialLink, MobileResponsiveContainer } from '../styles/Home'
 import productLandingPageImage from '../../assets/images/productLandingPage.jpg'
 import squareImage from '../../assets/images/square.png'
 
@@ -22,6 +22,7 @@ const Home = () => {
     return (
         <Layout logoColor={width <= 768 ? 'white' : 'black'} authColor='white'>
             <Container>
+                <MobileResponsiveContainer />
                 <InnerContainer>
                     <ContainerContent>
                         <MainHeader>Book Store</MainHeader>

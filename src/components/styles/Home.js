@@ -41,6 +41,7 @@ export const Image = styled.img`
         z-index: -1;
         opacity: 1;
         clip-path: polygon(0 0, 100% 0, 100% 80%, 0% 100%);
+        height: 93.5vh;
     }
 `;
 
@@ -59,6 +60,7 @@ export const MainHeader = styled.h1`
     text-transform: uppercase;
 
     @media only screen and (max-width: 768px) {
+        position: relative;
         color: #fff;
         width: 350px;
     }
@@ -80,7 +82,7 @@ export const ContainerButton = styled.div`
     margin-top: 40px;
 
     @media only screen and (max-width: 768px) {
-        
+        position: relative;        
     }
 `;
 
@@ -128,4 +130,19 @@ export const SocialImage = styled.img`
     width: 24px;
     height: 24px;
     margin: 0px 10px;
+`;
+
+export const MobileResponsiveContainer = styled.span`
+    
+
+    @media only screen and (max-width: 768px) {
+        position: absolute;
+        top: 0%;
+        width: 100%;
+        height: 100px;
+        background-color: #000;
+        opacity: 0.6;
+        height: 100vh;
+        clip-path: polygon(0 0, 100% 0, 100% 80%, 0% 100%);
+    }
 `;
