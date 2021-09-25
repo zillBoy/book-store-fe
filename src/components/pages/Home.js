@@ -18,7 +18,6 @@ const Home = () => {
 
     const { width } = useWindowDimensions();
 
-
     return (
         <Layout logoColor={width <= 768 ? 'white' : 'black'} authColor='white'>
             <Container>
