@@ -3,7 +3,6 @@ import { Container, InputDiv, Input, InputIconDiv, InputIcon, MainHeader } from 
 import Layout from '../Layout'
 import searchImage from '../../assets/images/search.png'
 
-
 const FeaturedBooks = () => {
 
     const [search, setSearch] = useState('')
@@ -18,6 +17,8 @@ const FeaturedBooks = () => {
                     </InputIconDiv>
                     <Input placeholder='Search' type='text' value={search} onChange={event => setSearch(event.target.value)} />
                 </InputDiv>
+
+                
             </Container>
         </Layout>
     )
