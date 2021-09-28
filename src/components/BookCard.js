@@ -1,10 +1,10 @@
 import React from 'react'
 import { Container, Image } from './styles/BookCard'
 
-const BookCard = ({ image }) => {
+const BookCard = ({ onClick, image }) => {
 
     return (
-        <Container>
+        <Container onClick={onClick}>
             <Image src={image} alt='bookcover' />
         </Container>
     )

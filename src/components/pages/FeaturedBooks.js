@@ -3,42 +3,11 @@ import { Container, InputDiv, Input, InputIconDiv, InputIcon, MainHeader, Featur
 import Layout from '../Layout'
 import searchImage from '../../assets/images/search.png'
 import BookCardList from '../BookCardList'
+import { books } from '../../hooks/request'
 
 const FeaturedBooks = () => {
 
     const [search, setSearch] = useState('')
-    const books = [
-        {
-            img: '/images/book/book1.jpg'
-        },
-        {
-            img: '/images/book/book2.jpg'
-        },
-        {
-            img: '/images/book/book3.jpg'
-        },
-        {
-            img: '/images/book/book4.jpg'
-        },
-        {
-            img: '/images/book/book5.jpg'
-        },
-        {
-            img: '/images/book/book6.jpg'
-        },
-        {
-            img: '/images/book/book7.jpg'
-        },
-        {
-            img: '/images/book/book8.jpg'
-        },
-        {
-            img: '/images/book/book9.jpg'
-        },
-        {
-            img: '/images/book/book10.jpg'
-        }
-    ]
 
     return (
         <Layout hideAuth={true}>
