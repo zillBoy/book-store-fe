@@ -45,3 +45,9 @@ export const Input = styled.input`
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
 `;
+
+export const FeaturedBooksContainer = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
