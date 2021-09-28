@@ -13,7 +13,8 @@ const BookDetail = () => {
     useEffect(() => {
         const book = books.find(book => book.id === Number(id))
         setBook(book)
-    }, [])
+        console.log('called')
+    }, [id])
 
     if (book === undefined) return (
         <div>
