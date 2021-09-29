@@ -44,6 +44,10 @@ export const Input = styled.input`
     padding-left: 10px;
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
+
+    @media only screen and (max-width: 768px) {
+        width: 68%;
+    }
 `;
 
 export const FeaturedBooksContainer = styled.div`
