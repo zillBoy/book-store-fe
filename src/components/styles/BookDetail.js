@@ -112,7 +112,7 @@ export const ImageContainer = styled.div`
 
 export const Image = styled.img`
     width: 100%;
-    height: 100vh;
+    height: 99.5vh;
     object-fit: cover;
     opacity: 0.8;
 
@@ -125,14 +125,37 @@ export const Image = styled.img`
     }
 `;
 
+export const ButtonContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 7%;
+    left: 20px;
+    background-color: #6D2223;
+    width: 117px;
+    height: 37px;
+    border-radius: 5px;
+    cursor: pointer;
+`;
+
+export const BuyButton = styled.p`
+    text-align: center;
+    font-family: 'Montserrat';
+    font-size: 14px;
+    color: #fff;
+    border: none;
+`;
+
 export const Circle = styled.div`
     position: absolute;
     top: 50%;
-    right: 5%;
+    right: ${props => props.right ? props.right : '5%'} ;
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-color: #fff;
+    background-color: ${props => props.color ? props.color : '#fff'};
+    cursor: pointer;
 
     z-index: 2;
 `;
@@ -144,6 +167,10 @@ export const CircleImage = styled.img`
 
     width: 24px;
     height: 24px;
+`;
 
-    cursor: pointer;
+export const BuyCircleImage = styled.div`
+    position: absolute;
+    top: 28%;
+    left: 25%;
 `;

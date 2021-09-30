@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Container, ContentContainer, ImageContainer, Image, SummaryContainer, Summary, SummaryTitle, DetailContainer, LabelContainer, LabelComponentContainer, BoldPara, Para, Circle, CircleImage } from '../styles/BookDetail'
+import { Container, ContentContainer, ImageContainer, Image, SummaryContainer, Summary, SummaryTitle, DetailContainer, LabelContainer, LabelComponentContainer, BoldPara, Para, Circle, CircleImage, ButtonContainer, BuyButton, BuyCircleImage } from '../styles/BookDetail'
 import { books } from '../../hooks/request'
 import Layout from '../Layout';
 
@@ -7,6 +7,7 @@ import useWindowDimensions from '../../hooks/useWindowDimensions'
 
 import contentIcon from '../../assets/images/content.png'
 import summaryIcon from '../../assets/images/summary.png'
+import {ReactComponent as Logo} from '../../assets/images/buy.svg'
 
 const BookDetail = () => {
     
@@ -31,6 +32,10 @@ const BookDetail = () => {
         }
     }
 
+    const onBuyHandler = () => {
+        // Buy book
+    }
+
     useEffect(() => {
         if (width <= 768) {
             setShowContent('summary')
@@ -52,6 +57,9 @@ const BookDetail = () => {
                 {showContent === '' ? <>
                     <SummaryContainerComponent book={book} />
                     <DetailContainerComponent book={book} />
+                    <ButtonContainer onClick={onBuyHandler}>
+                        <BuyButton>Buy</BuyButton>
+                    </ButtonContainer>
                 </> : showContent === 'summary' ? <>
                     <SummaryContainerComponent book={book} />
                 </> : <>
@@ -62,7 +70,12 @@ const BookDetail = () => {
                 <ImageContainer>
                     {width <= 768 && <>
                         <Circle onClick={contentHandler}>
-                            {showContent === 'summary' ? <CircleImage src={summaryIcon} alt='' /> : <CircleImage src={contentIcon} alt='' />}
+                            {showContent === 'summary' ? <CircleImage src={summaryIcon} alt='summary' /> : <CircleImage src={contentIcon} alt='content' />}
+                        </Circle>
+                        <Circle color='#6D2223' right='18%' onClick={onBuyHandler}>
+                            <BuyCircleImage>
+                                <Logo stroke='#fff' />    
+                            </BuyCircleImage>
                         </Circle>
                     </>}
                     <Image src={book.image} alt={book.name} />
