@@ -53,12 +53,22 @@ export const ImageCover = styled.div`
     height: ${props =>  props.height ? props.height : '43px'};
     border: 1px solid #000;
     border-radius: 2px;
+
+    @media only screen and (max-width: 568px) {
+        width: 290px;
+        top: 150px;
+    }
 `;
 
 export const Image = styled.img`
     width: ${props =>  props.width ? props.width : '390px'};
     height: ${props =>  props.height ? props.height : '43px'};
     object-fit: cover;
+
+    @media only screen and (max-width: 568px) {
+        width: 290px;
+        top: 150px;
+    }
 `;
 
 export const InputImage = styled.input`

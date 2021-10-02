@@ -3,8 +3,12 @@ import Layout from '../../Layout'
 import { Container, Card, InputContainer, Header } from '../../styles/admin/AddBook'
 import { ButtonContainer, BuyButton } from '../../styles/BookDetail'
 import Input from '../../Input'
+import useWindowDimensions from '../../../hooks/useWindowDimensions'
 
 const AddBook = () => {
+    
+    const { width } = useWindowDimensions()
+    const mobile = width <= 786 ? true : false
     
     const [name, setName] = useState('')
     const [author, setAuthor] = useState('')
@@ -34,7 +38,32 @@ const AddBook = () => {
     }
 
     const onAddHandler = () => {
-        console.log('add handler is called')
+        
+        if (name.length === 0) return alert('Please add book name')
+        else if (author.length === 0) return alert('Please add author name')
+        else if (publisher.length === 0) return alert('Please add publisher name')
+        else if (isbn.length === 0) return alert('Please add isbn number')
+        else if (year.length === 0) return alert('Please add book published year')
+        else if (language.length === 0) return alert('Please add book language')
+        else if (genre.length === 0) return alert('Please add book genre')
+        else if (page.length === 0) return alert('Please enter book pages')
+        else if (summary.length === 0) return alert('Please add book summary')
+        else if (image.length === 0) return alert('Please add book image')
+
+        let book = {
+            name,
+            author,
+            publisher,
+            isbn,
+            year,
+            language,
+            genre,
+            page,
+            summary,
+            image
+        }
+
+        console.log('book: ', book)
     }
 
     return (
@@ -133,7 +162,7 @@ const AddBook = () => {
                             inputType='textarea'
                             width='500px'
                             height='90px'
-                            style={{marginTop: '-18px'}}
+                            style={mobile ? {} : {marginTop: '-18px'}}
                         />
                         <Input 
                             id='add-book-image'
@@ -148,7 +177,7 @@ const AddBook = () => {
                         />
                     </InputContainer>
 
-                    <ButtonContainer onClick={onAddHandler} style={{bottom: '3%', left: '47px'}}>
+                    <ButtonContainer mobile={mobile} onClick={onAddHandler}>
                         <BuyButton>Add</BuyButton>
                     </ButtonContainer>
                 </Card>

@@ -137,6 +137,8 @@ export const ButtonContainer = styled.div`
     height: 37px;
     border-radius: 5px;
     cursor: pointer;
+    bottom: ${props => props.mobile ? '-7%' : '3%'};
+    left: ${props => props.mobile ? '20px' : '47px'};
 `;
 
 export const BuyButton = styled.p`
