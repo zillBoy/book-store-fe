@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Layout from '../../Layout'
 import { Container, Card, InputContainer, Header } from '../../styles/admin/AddBook'
+import { ButtonContainer, BuyButton } from '../../styles/BookDetail'
 import Input from '../../Input'
 
 const AddBook = () => {
@@ -16,6 +17,22 @@ const AddBook = () => {
     const [page, setPage] = useState('')
     const [image, setImage] = useState('')
     
+    const onSetImageHandler = event => {
+
+        let file = event.target.files[0]
+        let acceptedFormat = "image/jpeg"
+        
+        if (file.type !==  acceptedFormat) {
+            return alert(`Please choose an ${acceptedFormat} file`)
+        }
+
+        setImage(file)
+    }
+
+    const onAddHandler = () => {
+        console.log('add handler is called')
+    }
+
     return (
         <Layout>
             <Container>
@@ -111,20 +128,25 @@ const AddBook = () => {
                             type='text'
                             inputType='textarea'
                             width='500px'
-                            height='130px'
+                            height='90px'
+                            style={{marginTop: '-18px'}}
                         />
                         <Input 
                             id='add-book-image'
                             label='Image'
                             placeholder='Choose Image'
                             value={image}
-                            onChange={event => setImage(event.target.value)}
+                            onChange={onSetImageHandler}
                             type='file'
                             inputType='image'
                             width='500px'
                             height='90px'
                         />
                     </InputContainer>
+
+                    <ButtonContainer onClick={onAddHandler} style={{bottom: '3%', left: '47px'}}>
+                        <BuyButton>Add</BuyButton>
+                    </ButtonContainer>
                 </Card>
             </Container>
         </Layout>
