@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect  } from 'react'
+import React, { useState  } from 'react'
 import { Container, InputDiv, Input, InputIconDiv, InputIcon, MainHeader, FeaturedBooksContainer } from '../styles/FeaturedBooks'
 import Layout from '../Layout'
 import searchImage from '../../assets/images/search.png'
