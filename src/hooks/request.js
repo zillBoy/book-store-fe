@@ -1,3 +1,5 @@
+import { URL } from '../utility/utils'
+
 export const books = [
     {
         id: 1,
@@ -170,3 +172,21 @@ export const books = [
         status: 'published',
     },
 ]
+
+async function httpGetAllBooks() {
+    try {
+        const response = await fetch(`${URL}/books`)
+        const data = await response.json()
+
+        return data
+    } catch(err) {
+        console.log(err)
+        return {
+            ok: false
+        }
+    }
+}
+
+export {
+    httpGetAllBooks
+};

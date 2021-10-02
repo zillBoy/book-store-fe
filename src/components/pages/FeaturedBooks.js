@@ -1,13 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback, useEffect  } from 'react'
 import { Container, InputDiv, Input, InputIconDiv, InputIcon, MainHeader, FeaturedBooksContainer } from '../styles/FeaturedBooks'
 import Layout from '../Layout'
 import searchImage from '../../assets/images/search.png'
 import BookCardList from '../BookCardList'
-import { books } from '../../hooks/request'
+import useBooks from '../../hooks/useBooks'
 
 const FeaturedBooks = () => {
 
     const [search, setSearch] = useState('')
+    const books = useBooks();
 
     return (
         <Layout hideAuth={true}>
