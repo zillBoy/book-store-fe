@@ -16,16 +16,20 @@ const AddBook = () => {
     const [genre, setGenre] = useState('')
     const [page, setPage] = useState('')
     const [image, setImage] = useState('')
+    const [imageCover, setImageCover] = useState('https://i.stack.imgur.com/y9DpT.jpg')
     
     const onSetImageHandler = event => {
 
         let file = event.target.files[0]
+        let imageUrl = URL.createObjectURL(file)
+
         let acceptedFormat = "image/jpeg"
         
         if (file.type !==  acceptedFormat) {
             return alert(`Please choose an ${acceptedFormat} file`)
         }
 
+        setImageCover(imageUrl)
         setImage(file)
     }
 
@@ -135,7 +139,7 @@ const AddBook = () => {
                             id='add-book-image'
                             label='Image'
                             placeholder='Choose Image'
-                            value={image}
+                            image={imageCover}
                             onChange={onSetImageHandler}
                             type='file'
                             inputType='image'

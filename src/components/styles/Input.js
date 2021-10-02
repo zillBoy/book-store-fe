@@ -55,6 +55,12 @@ export const ImageCover = styled.div`
     border-radius: 2px;
 `;
 
+export const Image = styled.img`
+    width: ${props =>  props.width ? props.width : '390px'};
+    height: ${props =>  props.height ? props.height : '43px'};
+    object-fit: cover;
+`;
+
 export const InputImage = styled.input`
     margin-top: 10px;
 `;
