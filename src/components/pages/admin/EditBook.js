@@ -74,13 +74,11 @@ const EditBook = () => {
             image
         }
 
-        console.log('book: ', book)
+        console.log('edit book: ', book)
     }
 
     async function getBookHandler() {
         const book = await getBookById(id)
-
-        console.log('book: ', book)
 
         if (book.error === undefined) {
             const parsedBook = book[0]
