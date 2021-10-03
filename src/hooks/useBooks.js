@@ -18,7 +18,7 @@ function useBooks() {
         } else {
             console.log('book was not deleted!')
         }
-    })
+    }, [getAllBooks])
 
     useEffect(() => {
         getAllBooks()

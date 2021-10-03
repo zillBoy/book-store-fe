@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { TableContainer, Table, TableRow, TableHead, TableHeader, TableData, TableBody } from '../../styles/admin/ViewBook'
-import { ErrorContainer } from '../../styles/Error'
 import Layout from '../../Layout'
 import useBooks from '../../../hooks/useBooks'
 import { ReactComponent as ViewIcon } from '../../../assets/images/view.svg'
@@ -18,7 +17,7 @@ const ViewBooks = () => {
     const onViewHandler = () => {
         console.log('view called')
     }
-    
+
     if (books.error !== undefined) return <Error error={books.error} />
 
     return (

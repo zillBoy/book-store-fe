@@ -4,11 +4,14 @@ import Layout from '../Layout'
 import searchImage from '../../assets/images/search.png'
 import BookCardList from '../BookCardList'
 import useBooks from '../../hooks/useBooks'
+import Error from './Error'
 
 const FeaturedBooks = () => {
 
     const [search, setSearch] = useState('')
     const { books } = useBooks();
+
+    if (books.error !== undefined) return <Error error={books.error} />
 
     return (
         <Layout hideAuth={true}>
