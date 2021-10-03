@@ -8,6 +8,7 @@ import useWindowDimensions from '../../hooks/useWindowDimensions'
 import contentIcon from '../../assets/images/content.png'
 import summaryIcon from '../../assets/images/summary.png'
 import {ReactComponent as Logo} from '../../assets/images/buy.svg'
+import Error from './Error';
 
 const BookDetail = () => {
     
@@ -44,11 +45,7 @@ const BookDetail = () => {
         }
     }, [width])
 
-    if (book === undefined) return (
-        <div>
-            <p>Book Not Found!</p>
-        </div>
-    )
+    if (book === undefined) return <Error error='Book Not Found!' />
 
     return (
         <Layout logoTextColor={width <= 768 ? 'white' : 'black'} logoColor={width <= 768 ? 'white' : 'black'} authColor={width <= 768 ? 'white' : 'black'}>

@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect  } from 'react'
-import { httpGetAllBooks, httpDeleteBookById } from './request'
+import { httpGetAllBooks, httpGetBookById, httpDeleteBookById } from './request'
 
 function useBooks() {
     const [books, setBooks] = useState([])
@@ -8,6 +8,10 @@ function useBooks() {
         const fetchedBooks = await httpGetAllBooks();
         setBooks(fetchedBooks)
     }, []);
+
+    const getBookById = useCallback(async (id) => {
+        return await httpGetBookById(id)
+    }, [])
 
     const deleteBook = useCallback(async (id) => {
         const response = await httpDeleteBookById(id)
@@ -26,6 +30,7 @@ function useBooks() {
 
     return {
         books,
+        getBookById,
         deleteBook
     };
 }

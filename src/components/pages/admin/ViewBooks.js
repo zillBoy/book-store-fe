@@ -1,4 +1,5 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 import { TableContainer, Table, TableRow, TableHead, TableHeader, TableData, TableBody } from '../../styles/admin/ViewBook'
 import Layout from '../../Layout'
 import useBooks from '../../../hooks/useBooks'
@@ -9,13 +10,14 @@ import Error from '../Error'
 const ViewBooks = () => {
 
     const { books, deleteBook } = useBooks()
+    const history = useHistory()
 
     const onDeleteHandler = bookId => {
         deleteBook(bookId)
     }
 
-    const onViewHandler = () => {
-        console.log('view called')
+    const onViewHandler = bookId => {
+        history.push(`editbook?id=${bookId}`)
     }
 
     if (books.error !== undefined) return <Error error={books.error} />
@@ -71,7 +73,7 @@ const BookRow = ({ book, key, viewHandler, deleteHandler }) => {
             <TableData>
                 <>
                     <DeleteIcon title="Delete" onClick={() => deleteHandler(book.id)} style={iconStyles} color='#983839' />
-                    <ViewIcon title="View" onClick={() => viewHandler(book)} style={iconStyles} color='#835C52' /> 
+                    <ViewIcon title="View" onClick={() => viewHandler(book.id)} style={iconStyles} color='#835C52' /> 
                 </>
             </TableData>
         </TableRow>

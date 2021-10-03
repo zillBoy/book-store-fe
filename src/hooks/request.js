@@ -173,6 +173,7 @@ export const books = [
     },
 ]
 
+// Get All Books Endpoint
 async function httpGetAllBooks() {
     try {
         const response = await fetch(`${URL}/books`)
@@ -187,6 +188,21 @@ async function httpGetAllBooks() {
     }
 }
 
+async function httpGetBookById(id) {
+    try {
+        const response = await fetch(`${URL}/books/${id}`)
+        const data = await response.json()
+
+        return data
+    } catch(err) {
+        console.log(err)
+        return {
+            ok: false
+        }
+    }
+}
+
+// Delete Endpoint
 async function httpDeleteBookById(id) {
     try {
         return await fetch(`${URL}/books/${id}`, {
@@ -202,5 +218,6 @@ async function httpDeleteBookById(id) {
 
 export {
     httpGetAllBooks,
+    httpGetBookById,
     httpDeleteBookById
 };
