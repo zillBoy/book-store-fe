@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect  } from 'react'
-import { httpGetAllBooks } from './request'
+import { httpGetAllBooks, httpDeleteBookById } from './request'
 
 function useBooks() {
     const [books, setBooks] = useState([])
@@ -9,11 +9,25 @@ function useBooks() {
         setBooks(fetchedBooks)
     }, []);
 
+    const deleteBook = useCallback(async (id) => {
+        const response = await httpDeleteBookById(id)
+
+        const success = response.ok
+        if (success) {
+            getAllBooks()
+        } else {
+            console.log('book was not deleted!')
+        }
+    })
+
     useEffect(() => {
         getAllBooks()
     }, [getAllBooks])
 
-    return books;
+    return {
+        books,
+        deleteBook
+    };
 }
 
 export default useBooks;

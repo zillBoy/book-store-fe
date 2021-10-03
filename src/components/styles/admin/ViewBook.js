@@ -3,13 +3,13 @@ import styled from "styled-components";
 export const TableContainer = styled.div`
     display: block;
     position: relative;
-    top: 60px;
+    top: 70px;
     margin-left: 1%;
     width: 95%;
-    height: 90vh;
+    height: 87vh;
     background-color: #fff;
     border-radius: 5px;
-    /* overflow-y: scroll; */
+    overflow-y: scroll;
 `;
 
 export const Table = styled.table`

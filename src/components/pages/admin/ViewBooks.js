@@ -1,12 +1,25 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { TableContainer, Table, TableRow, TableHead, TableHeader, TableData, TableBody } from '../../styles/admin/ViewBook'
+import { ErrorContainer } from '../../styles/Error'
 import Layout from '../../Layout'
 import useBooks from '../../../hooks/useBooks'
+import { ReactComponent as ViewIcon } from '../../../assets/images/view.svg'
+import { ReactComponent as DeleteIcon } from '../../../assets/images/delete.svg'
+import Error from '../Error'
 
 const ViewBooks = () => {
 
-    const books = useBooks()
-    console.log('books: ', books)
+    const { books, deleteBook } = useBooks()
+
+    const onDeleteHandler = bookId => {
+        deleteBook(bookId)
+    }
+
+    const onViewHandler = () => {
+        console.log('view called')
+    }
+    
+    if (books.error !== undefined) return <Error error={books.error} />
 
     return (
         <Layout>
@@ -26,19 +39,12 @@ const ViewBooks = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {books.map(book => (
-                            <TableRow>
-                                <TableData>{book.name}</TableData>
-                                <TableData>{book.author}</TableData>
-                                <TableData>{book.publisher}</TableData>
-                                <TableData>{book.isbn}</TableData>
-                                <TableData>{book.year}</TableData>
-                                <TableData>{book.page}</TableData>
-                                <TableData>{book.genre}</TableData>
-                                <TableData>{book.language}</TableData>
-                                <TableData>a</TableData>
-                            </TableRow>
-                        ))}
+                        {books.map(book => <BookRow  
+                            key={book.id}
+                            book={book}
+                            deleteHandler={onDeleteHandler}
+                            viewHandler={onViewHandler}
+                        />)}
                     </TableBody>        
                 </Table>
             </TableContainer>
@@ -47,3 +53,28 @@ const ViewBooks = () => {
 }
 
 export default ViewBooks
+
+
+const BookRow = ({ book, key, viewHandler, deleteHandler }) => {
+
+    const iconStyles = {padding: '0px 2px', cursor: 'pointer'}
+
+    return (
+        <TableRow key={key}>
+            <TableData>{book.name}</TableData>
+            <TableData>{book.author}</TableData>
+            <TableData>{book.publisher}</TableData>
+            <TableData>{book.isbn}</TableData>
+            <TableData>{book.year}</TableData>
+            <TableData>{book.page}</TableData>
+            <TableData>{book.genre}</TableData>
+            <TableData>{book.language}</TableData>
+            <TableData>
+                <>
+                    <DeleteIcon title="Delete" onClick={() => deleteHandler(book.id)} style={iconStyles} color='#983839' />
+                    <ViewIcon title="View" onClick={() => viewHandler(book)} style={iconStyles} color='#835C52' /> 
+                </>
+            </TableData>
+        </TableRow>
+    )
+}

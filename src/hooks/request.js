@@ -187,6 +187,20 @@ async function httpGetAllBooks() {
     }
 }
 
+async function httpDeleteBookById(id) {
+    try {
+        return await fetch(`${URL}/books/${id}`, {
+            method: 'DELETE'
+        })
+    } catch(err) {
+        console.log(err)
+        return {
+            ok: false
+        }
+    }
+}
+
 export {
-    httpGetAllBooks
+    httpGetAllBooks,
+    httpDeleteBookById
 };

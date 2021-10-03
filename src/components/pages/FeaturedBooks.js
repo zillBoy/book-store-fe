@@ -8,7 +8,7 @@ import useBooks from '../../hooks/useBooks'
 const FeaturedBooks = () => {
 
     const [search, setSearch] = useState('')
-    const books = useBooks();
+    const { books } = useBooks();
 
     return (
         <Layout hideAuth={true}>
