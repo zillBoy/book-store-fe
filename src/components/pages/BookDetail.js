@@ -1,29 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import { Container, ContentContainer, ImageContainer, Image, SummaryContainer, Summary, SummaryTitle, DetailContainer, LabelContainer, LabelComponentContainer, BoldPara, Para, Circle, CircleImage, ButtonContainer, BuyButton, BuyCircleImage } from '../styles/BookDetail'
-import { books } from '../../hooks/request'
 import Layout from '../Layout';
+import Error from './Error';
+import { URL as API_URL } from '../../utility/utils'
 
 import useWindowDimensions from '../../hooks/useWindowDimensions'
+import useBooks from '../../hooks/useBooks'
 
 import contentIcon from '../../assets/images/content.png'
 import summaryIcon from '../../assets/images/summary.png'
 import {ReactComponent as Logo} from '../../assets/images/buy.svg'
-import Error from './Error';
 
 const BookDetail = () => {
     
     const { width } = useWindowDimensions()
+    const { getBookById } = useBooks()
 
-    let params = new URL(window.location.href);
-    let id = params.searchParams.get("id");
+    const params = new URL(window.location.href);
+    const id = params.searchParams.get("id");
     
     const [book, setBook] = useState({})
     const [showContent, setShowContent] = useState('')
-
-    useEffect(() => {
-        const book = books.find(book => book.id === Number(id))
-        setBook(book)
-    }, [id])
 
     const contentHandler = () => {
         if (showContent === 'summary') {
@@ -45,7 +42,22 @@ const BookDetail = () => {
         }
     }, [width])
 
-    if (book === undefined) return <Error error='Book Not Found!' />
+    async function getBookHandler() {
+        const book = await getBookById(id)
+        
+        if (book.error === undefined) {
+            const parsedBook = book[0]
+            setBook(parsedBook)
+        } else {
+            setBook(book)
+        }
+    }
+
+    useEffect(() => {
+        getBookHandler()
+    }, [])
+
+    if (book.error !== undefined) return <Error error='Book Not Found!' />
 
     return (
         <Layout logoTextColor={width <= 768 ? 'white' : 'black'} logoColor={width <= 768 ? 'white' : 'black'} authColor={width <= 768 ? 'white' : 'black'}>
@@ -75,7 +87,7 @@ const BookDetail = () => {
                             </BuyCircleImage>
                         </Circle>
                     </>}
-                    <Image src={book.image} alt={book.name} />
+                    <Image src={`${API_URL}/images/${book.image}`} alt={book.name} />
                 </ImageContainer>
             </Container>
         </Layout>
