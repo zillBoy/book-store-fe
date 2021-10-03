@@ -1,8 +1,10 @@
 import { useState, useCallback, useEffect  } from 'react'
-import { httpGetAllBooks, httpGetBookById, httpDeleteBookById } from './request'
+import { httpGetAllBooks, httpGetBookById, httpDeleteBookById, httpAddBook } from './request'
 
 function useBooks() {
     const [books, setBooks] = useState([])
+
+    // GET BOOK
 
     const getAllBooks = useCallback(async () => {
         const fetchedBooks = await httpGetAllBooks();
@@ -12,6 +14,8 @@ function useBooks() {
     const getBookById = useCallback(async (id) => {
         return await httpGetBookById(id)
     }, [])
+
+    // DELETE BOOK
 
     const deleteBook = useCallback(async (id) => {
         const response = await httpDeleteBookById(id)
@@ -24,6 +28,20 @@ function useBooks() {
         }
     }, [getAllBooks])
 
+    // ADD BOOK
+
+    const addBook = useCallback(async (book) => {
+        
+        const response = await httpAddBook(book)
+
+        const success = response.ok
+        if (success) {
+            getAllBooks()
+        } else {
+            console.log('book was not added!')
+        }
+    }, [])
+
     useEffect(() => {
         getAllBooks()
     }, [getAllBooks])
@@ -31,7 +49,8 @@ function useBooks() {
     return {
         books,
         getBookById,
-        deleteBook
+        deleteBook,
+        addBook
     };
 }
 

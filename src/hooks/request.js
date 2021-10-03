@@ -43,8 +43,28 @@ async function httpDeleteBookById(id) {
     }
 }
 
+// Add Book Endpoint
+
+async function httpAddBook(book) {
+    try {
+        return await fetch(`${URL}/books`, {
+            method: 'POST',
+            body: JSON.stringify(book),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+    } catch (err) {
+        console.log(err)
+        return {
+            ok: false
+        }
+    }
+}
+
 export {
     httpGetAllBooks,
     httpGetBookById,
-    httpDeleteBookById
+    httpDeleteBookById,
+    httpAddBook
 };

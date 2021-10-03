@@ -1,13 +1,17 @@
 import React, { useState } from 'react'
-import Layout from '../../Layout'
 import { Container, Card, InputContainer, Header } from '../../styles/admin/AddBook'
 import { ButtonContainer, BuyButton } from '../../styles/BookDetail'
+
+import Layout from '../../Layout'
 import Input from '../../Input'
+
 import useWindowDimensions from '../../../hooks/useWindowDimensions'
+import useBooks from '../../../hooks/useBooks'
 
 const AddBook = () => {
     
     const { width } = useWindowDimensions()
+    const { addBook } = useBooks()
     const mobile = width <= 786 ? true : false
     
     const [name, setName] = useState('')
@@ -27,7 +31,7 @@ const AddBook = () => {
         let file = event.target.files[0]
         let imageUrl = URL.createObjectURL(file)
 
-        let acceptedFormat = "image/jpeg"
+        let acceptedFormat = "image/*"
         
         if (file.type !==  acceptedFormat) {
             return alert(`Please choose an ${acceptedFormat} file`)
@@ -36,6 +40,18 @@ const AddBook = () => {
         setImageCover(imageUrl)
         setImage(file)
     }
+
+    const createFormData = (photo, body) => {
+        const data = new FormData();
+        
+        data.append('photo', photo, photo.name)
+
+        Object.keys(body).forEach(key => {
+            data.append(key, body[key]);
+        });
+
+        return data;
+    };
 
     const onAddHandler = () => {
         
@@ -59,11 +75,11 @@ const AddBook = () => {
             language,
             genre,
             page,
-            summary,
-            image
+            summary
         }
-
-        console.log('book: ', book)
+        
+        const formData = createFormData(image, book)
+        addBook(formData)
     }
 
     return (
