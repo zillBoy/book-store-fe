@@ -101,11 +101,7 @@ const EditBook = () => {
     }
 
     useEffect(() => {
-        try {
-            getBookHandler()
-        } catch(err) {
-            console.log('edit book error!')
-        }
+        getBookHandler()
     }, [])
 
     if (book.error !== undefined) return <Error error={book.error} />
