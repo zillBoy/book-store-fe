@@ -12,7 +12,7 @@ import { URL as API_URL } from '../../../utility/utils'
 
 const EditBook = () => {
     
-    const { getBookById } = useBooks()
+    const { getBookById, editBook, editBookImage } = useBooks()
     const { width } = useWindowDimensions()
 
     const [book, setBook] = useState({})
@@ -32,23 +32,25 @@ const EditBook = () => {
     const [page, setPage] = useState('')
     const [image, setImage] = useState('')
     const [imageCover, setImageCover] = useState('https://i.stack.imgur.com/y9DpT.jpg')
+    const [imageChanged, setImageChanged] = useState(false)
     
     const onSetImageHandler = event => {
 
         let file = event.target.files[0]
         let imageUrl = URL.createObjectURL(file)
 
-        let acceptedFormat = "image/jpeg"
+        let acceptedFormat = "image/jpeg" || "image/png"
         
         if (file.type !==  acceptedFormat) {
             return alert(`Please choose an ${acceptedFormat} file`)
         }
 
+        setImageChanged(true)
         setImageCover(imageUrl)
         setImage(file)
     }
 
-    const onEditHandler = () => {
+    const onEditHandler = async () => {
         
         if (name.length === 0) return alert('Please add book name')
         else if (author.length === 0) return alert('Please add author name')
@@ -70,11 +72,15 @@ const EditBook = () => {
             language,
             genre,
             page,
-            summary,
-            image
+            summary
         }
 
-        console.log('edit book: ', book)
+        if (imageChanged) {
+            console.log('IMAGE_API')
+        } else {
+            const data = await editBook(id, book)
+            alert(`${data.name} successfully updated!`)
+        }
     }
 
     async function getBookHandler() {

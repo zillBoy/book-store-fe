@@ -44,7 +44,6 @@ async function httpDeleteBookById(id) {
 }
 
 // Add Book Endpoint
-
 async function httpAddBook(book) {
     try {
         return await fetch(`${URL}/books`, {
@@ -59,9 +58,38 @@ async function httpAddBook(book) {
     }
 }
 
+// Edit Book Endpoint
+async function httpEditBook(bookId, book) {
+    try {
+        return await fetch(`${URL}/books/${bookId}`, {
+            method: 'PUT',
+            body: JSON.stringify(book),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+    } catch(err) {
+        console.log(err)
+        return {
+            ok: false
+        }
+    }
+}
+
+// Edit Book - Image Endpoint
+async function httpEditBookImage(bookId, book) {
+    try {
+        return 'a'
+    } catch(err) {
+        console.log(err)
+    }
+}
+
 export {
     httpGetAllBooks,
     httpGetBookById,
     httpDeleteBookById,
-    httpAddBook
+    httpAddBook,
+    httpEditBook,
+    httpEditBookImage
 };
