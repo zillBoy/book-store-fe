@@ -95,7 +95,7 @@ const AddBook = () => {
             setPage('')
             setSummary('')
             setImage('')
-            setImageCover('')
+            setImageCover('https://i.stack.imgur.com/y9DpT.jpg')
             alert(`${data.name} successfully added!`)
         }
     }
