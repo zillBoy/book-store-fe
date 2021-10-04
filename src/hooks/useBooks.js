@@ -33,13 +33,9 @@ function useBooks() {
     const addBook = useCallback(async (book) => {
         
         const response = await httpAddBook(book)
-
-        const success = response.ok
-        if (success) {
-            getAllBooks()
-        } else {
-            console.log('book was not added!')
-        }
+        const data = await response.json()
+        return data
+        
     }, [])
 
     useEffect(() => {

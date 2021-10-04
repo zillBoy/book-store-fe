@@ -31,7 +31,7 @@ const AddBook = () => {
         let file = event.target.files[0]
         let imageUrl = URL.createObjectURL(file)
 
-        let acceptedFormat = "image/*"
+        let acceptedFormat = 'image/jpeg' || 'image/png'
         
         if (file.type !==  acceptedFormat) {
             return alert(`Please choose an ${acceptedFormat} file`)
@@ -43,9 +43,12 @@ const AddBook = () => {
 
     const createFormData = (photo, body) => {
         const data = new FormData();
-        
-        data.append('photo', photo, photo.name)
 
+        const name = photo.name.split('.')
+        const ext = name[name.length - 1]
+        const uniqueName = `${name[0]}_${new Date().getTime()}.${ext}`
+
+        data.append('photo', photo, uniqueName)
         Object.keys(body).forEach(key => {
             data.append(key, body[key]);
         });
@@ -53,7 +56,7 @@ const AddBook = () => {
         return data;
     };
 
-    const onAddHandler = () => {
+    const onAddHandler = async () => {
         
         if (name.length === 0) return alert('Please add book name')
         else if (author.length === 0) return alert('Please add author name')
@@ -77,9 +80,24 @@ const AddBook = () => {
             page,
             summary
         }
-        
-        const formData = createFormData(image, book)
-        addBook(formData)
+
+        const data = await addBook(createFormData(image, book))
+        if (data.error !== undefined) {
+            alert(data.error)
+        } else {
+            setName('')
+            setAuthor('')
+            setPublisher('')
+            setIsbn('')
+            setYear('')
+            setLanguage('')
+            setGenre('')
+            setPage('')
+            setSummary('')
+            setImage('')
+            setImageCover('')
+            alert(`${data.name} successfully added!`)
+        }
     }
 
     return (

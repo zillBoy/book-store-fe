@@ -49,10 +49,7 @@ async function httpAddBook(book) {
     try {
         return await fetch(`${URL}/books`, {
             method: 'POST',
-            body: JSON.stringify(book),
-            headers: {
-                'Content-Type': 'application/json'
-            }
+            body: book,
         })
     } catch (err) {
         console.log(err)
