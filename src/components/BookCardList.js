@@ -13,7 +13,7 @@ const BookCardList = ({ books }) => {
     
     return (
         <BooksContainer>
-            {books.map((book, index) => (
+            {books.length !== 0 && books.map((book, index) => (
                 <React.Fragment key={index}>
                     <BookCard onClick={() => goToBookDetailHandler(book)} image={book.image} />
                 </React.Fragment>
