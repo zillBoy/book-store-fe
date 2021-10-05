@@ -79,7 +79,10 @@ async function httpEditBook(bookId, book) {
 // Edit Book - Image Endpoint
 async function httpEditBookImage(bookId, book) {
     try {
-        return 'a'
+        return await fetch(`${URL}/books/image/${bookId}`, {
+            method: 'PUT',
+            body: book
+        })
     } catch(err) {
         console.log(err)
     }

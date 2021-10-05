@@ -50,6 +50,22 @@ const EditBook = () => {
         setImage(file)
     }
 
+    const createFormData = (photo, body) => {
+
+        const data = new FormData()
+
+        const name = photo.name.split('.')
+        const ext = name[name.length - 1]
+        const uniqueName = `${name[0]}_${new Date().getTime()}.${ext}`
+
+        data.append('photo', photo, uniqueName)
+        Object.keys(body).forEach(key => {
+            data.append(key, body[key])
+        })
+
+        return data;
+    }
+
     const onEditHandler = async () => {
         
         if (name.length === 0) return alert('Please add book name')
@@ -76,7 +92,8 @@ const EditBook = () => {
         }
 
         if (imageChanged) {
-            console.log('IMAGE_API')
+            const data = await editBookImage(id, createFormData(image, book))
+            console.log('data: ', data)
         } else {
             const data = await editBook(id, book)
             alert(`${data.name} successfully updated!`)

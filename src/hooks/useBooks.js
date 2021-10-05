@@ -42,6 +42,7 @@ function useBooks() {
         return data
     }, [])
 
+    // EDIT BOOK - IMAGE
     const editBookImage = useCallback(async (bookId, book) => {
         const response = await httpEditBookImage(bookId, book)
         const data = await response.json()
