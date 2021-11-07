@@ -5,6 +5,7 @@ import searchImage from '../../assets/images/search.png'
 import BookCardList from '../BookCardList'
 import useBooks from '../../hooks/useBooks'
 import Error from './Error'
+import { httpGetAllBooks, httpGetBookById, httpDeleteBookById, httpAddBook, httpEditBook, httpEditBookImage } from '../../hooks/request'
 
 const FeaturedBooks = () => {
 
@@ -46,8 +47,20 @@ const FeaturedBooks = () => {
         setSearch(value)
     }
 
+    const getPromiseData = async () => {
+        const books = await httpGetAllBooks();
+        return Promise.resolve({ books })
+    }
+
+    const getData = () => {
+        getPromiseData().then(res => {
+            const data = res
+            setBooksData(data.books)
+        })
+    }
+
     useEffect(() => {
-        setBooksData(books)
+        getData()
     }, [])
 
     if (books.error !== undefined) return <Error error={books.error} />
@@ -63,7 +76,7 @@ const FeaturedBooks = () => {
                     <Input placeholder='Search' type='text' value={search} onChange={event => onSearchHandler(event)} />
                 </InputDiv>
                 <FeaturedBooksContainer>
-                    <BookCardList books={search.length ? filteredBookData : books} />
+                    <BookCardList books={search.length ? filteredBookData : booksData} />
                 </FeaturedBooksContainer>
             </Container>
         </Layout>

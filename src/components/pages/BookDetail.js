@@ -35,7 +35,7 @@ const BookDetail = () => {
     }
 
     useEffect(() => {
-        if (width <= 768) {
+        if (width <= 468) {
             setShowContent('summary')
         } else {
             setShowContent('')

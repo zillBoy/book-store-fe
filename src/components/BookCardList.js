@@ -4,7 +4,6 @@ import BookCard from './BookCard'
 import { useHistory } from 'react-router-dom'
 
 const BookCardList = ({ books }) => {
-    
     const history = useHistory()
 
     const goToBookDetailHandler = book => {
