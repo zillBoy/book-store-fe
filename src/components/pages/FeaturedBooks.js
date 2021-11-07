@@ -5,7 +5,7 @@ import searchImage from '../../assets/images/search.png'
 import BookCardList from '../BookCardList'
 import useBooks from '../../hooks/useBooks'
 import Error from './Error'
-import { httpGetAllBooks, httpGetBookById, httpDeleteBookById, httpAddBook, httpEditBook, httpEditBookImage } from '../../hooks/request'
+import { httpGetAllBooks } from '../../hooks/request'
 
 const FeaturedBooks = () => {
 
